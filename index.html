@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=600, initial-scale=1">
+    <title>Eldorado Display Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="display-shell" id="displayApp" tabindex="0" aria-label="Eldorado Ray-Ban Display Demo">
+      <div class="hud-top" aria-hidden="true">
+        <span class="hud-signal">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="hud-screen" id="screenCounter">01</span>
+      </div>
+
+      <section class="screen screen-home is-active" data-screen="home" aria-hidden="false">
+        <div class="home-stack motion-item">
+          <div class="brand-mark" aria-label="Eldorado">
+            <img class="brand-logo" id="brandLogo" src="assets/eldorado-logo.png" alt="Eldorado">
+            <span class="logo-fallback">Eldorado</span>
+          </div>
+          <span class="brand-rule" aria-hidden="true"></span>
+          <div class="title-block">
+            <h1>Eldorado Display Demo</h1>
+            <p>Web app básico</p>
+          </div>
+          <button class="primary-action" type="button" data-action="start">Iniciar</button>
+        </div>
+      </section>
+
+      <section class="screen screen-controls" data-screen="controls" aria-hidden="true">
+        <header class="screen-heading motion-item">
+          <p>Teste rápido</p>
+          <h2>Controles</h2>
+        </header>
+
+        <div class="command-grid motion-item" aria-label="Comandos testáveis">
+          <button class="command-card" type="button" data-command="swipe-left">
+            <span class="command-icon" aria-hidden="true">&larr;</span>
+            <span>Swipe esquerda</span>
+          </button>
+          <button class="command-card" type="button" data-command="swipe-right">
+            <span class="command-icon" aria-hidden="true">&rarr;</span>
+            <span>Swipe direita</span>
+          </button>
+          <button class="command-card" type="button" data-command="swipe-up">
+            <span class="command-icon" aria-hidden="true">&uarr;</span>
+            <span>Swipe cima</span>
+          </button>
+          <button class="command-card" type="button" data-command="swipe-down">
+            <span class="command-icon" aria-hidden="true">&darr;</span>
+            <span>Swipe baixo</span>
+          </button>
+          <button class="command-card" type="button" data-command="enter">
+            <span class="command-icon" aria-hidden="true">&crarr;</span>
+            <span>Enter</span>
+          </button>
+          <button class="command-card" type="button" data-command="cancel">
+            <span class="command-icon" aria-hidden="true">&times;</span>
+            <span>Cancel</span>
+          </button>
+        </div>
+
+        <p class="status-line motion-item">Último comando: <strong id="lastCommand">Nenhum</strong></p>
+      </section>
+
+      <section class="screen screen-result" data-screen="result" aria-hidden="true">
+        <div class="result-stack motion-item">
+          <header class="screen-heading">
+            <p>Resumo</p>
+            <h2>Teste concluído</h2>
+          </header>
+
+          <div class="summary-panel" aria-label="Resumo do teste">
+            <div class="summary-row">
+              <span>Comandos</span>
+              <strong id="commandCount">0</strong>
+            </div>
+            <div class="summary-row">
+              <span>Último</span>
+              <strong id="resultLastCommand">Nenhum</strong>
+            </div>
+            <div class="summary-row">
+              <span>Status</span>
+              <strong>Demo pronta para validação no Display</strong>
+            </div>
+          </div>
+
+          <button class="secondary-action" type="button" data-action="restart">Reiniciar</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
