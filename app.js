@@ -1,5 +1,6 @@
 const screenNames = ["home", "controls", "result"];
 const defaultPalette = {
+  name: "orange",
   orange: "#f28a18",
   orangeSoft: "#ffb05c",
   orangeLine: "rgba(242, 138, 24, 0.54)",
@@ -19,28 +20,35 @@ const defaultPalette = {
   outlineWeak: "rgba(242, 138, 24, 0.14)",
   buttonShadow: "rgba(242, 138, 24, 0.24)",
   buttonShadowStrong: "rgba(242, 138, 24, 0.2)",
+  bodyShade: "#12100c",
+  displayShade: "#15120e",
+  buttonInk: "#12100d",
 };
 
 const alternatePalette = {
-  orange: "#4dd0c8",
-  orangeSoft: "#8be8e0",
-  orangeLine: "rgba(77, 208, 200, 0.54)",
-  shadow: "rgba(7, 24, 30, 0.42)",
-  glow: "rgba(77, 208, 200, 0.72)",
-  strong: "rgba(77, 208, 200, 0.54)",
-  soft: "rgba(77, 208, 200, 0.38)",
-  weak: "rgba(77, 208, 200, 0.22)",
-  subtle: "rgba(77, 208, 200, 0.16)",
-  faint: "rgba(77, 208, 200, 0.12)",
-  tint: "rgba(77, 208, 200, 0.13)",
-  card: "rgba(77, 208, 200, 0.17)",
-  card2: "rgba(77, 208, 200, 0.07)",
-  border: "rgba(77, 208, 200, 0.74)",
-  outline: "rgba(77, 208, 200, 0.18)",
-  hover: "rgba(77, 208, 200, 0.2)",
-  outlineWeak: "rgba(77, 208, 200, 0.14)",
-  buttonShadow: "rgba(77, 208, 200, 0.24)",
-  buttonShadowStrong: "rgba(77, 208, 200, 0.2)",
+  name: "blue",
+  orange: "#2f80ff",
+  orangeSoft: "#86bdff",
+  orangeLine: "rgba(47, 128, 255, 0.54)",
+  shadow: "rgba(5, 17, 34, 0.46)",
+  glow: "rgba(47, 128, 255, 0.72)",
+  strong: "rgba(47, 128, 255, 0.54)",
+  soft: "rgba(47, 128, 255, 0.38)",
+  weak: "rgba(47, 128, 255, 0.22)",
+  subtle: "rgba(47, 128, 255, 0.16)",
+  faint: "rgba(47, 128, 255, 0.12)",
+  tint: "rgba(47, 128, 255, 0.13)",
+  card: "rgba(47, 128, 255, 0.17)",
+  card2: "rgba(47, 128, 255, 0.07)",
+  border: "rgba(47, 128, 255, 0.74)",
+  outline: "rgba(47, 128, 255, 0.18)",
+  hover: "rgba(47, 128, 255, 0.2)",
+  outlineWeak: "rgba(47, 128, 255, 0.14)",
+  buttonShadow: "rgba(47, 128, 255, 0.24)",
+  buttonShadowStrong: "rgba(47, 128, 255, 0.2)",
+  bodyShade: "#07121f",
+  displayShade: "#08182b",
+  buttonInk: "#06101d",
 };
 
 const commandLabels = {
@@ -68,6 +76,7 @@ let pointerStart = null;
 let suppressClickUntil = 0;
 
 function applyPalette(palette) {
+  document.documentElement.dataset.palette = palette.name;
   document.documentElement.style.setProperty("--eldorado-orange", palette.orange);
   document.documentElement.style.setProperty("--eldorado-orange-soft", palette.orangeSoft);
   document.documentElement.style.setProperty("--orange-line", palette.orangeLine);
@@ -87,6 +96,9 @@ function applyPalette(palette) {
   document.documentElement.style.setProperty("--accent-outline-weak", palette.outlineWeak);
   document.documentElement.style.setProperty("--accent-button-shadow", palette.buttonShadow);
   document.documentElement.style.setProperty("--accent-button-shadow-strong", palette.buttonShadowStrong);
+  document.documentElement.style.setProperty("--body-accent-shade", palette.bodyShade);
+  document.documentElement.style.setProperty("--display-accent-shade", palette.displayShade);
+  document.documentElement.style.setProperty("--accent-button-ink", palette.buttonInk);
 }
 
 function renderScreen() {
