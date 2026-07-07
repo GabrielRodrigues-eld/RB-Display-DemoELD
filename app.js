@@ -4,6 +4,21 @@ const defaultPalette = {
   orangeSoft: "#ffb05c",
   orangeLine: "rgba(242, 138, 24, 0.54)",
   shadow: "rgba(0, 0, 0, 0.42)",
+  glow: "rgba(242, 138, 24, 0.72)",
+  strong: "rgba(242, 138, 24, 0.54)",
+  soft: "rgba(242, 138, 24, 0.38)",
+  weak: "rgba(242, 138, 24, 0.22)",
+  subtle: "rgba(242, 138, 24, 0.16)",
+  faint: "rgba(242, 138, 24, 0.12)",
+  tint: "rgba(242, 138, 24, 0.13)",
+  card: "rgba(242, 138, 24, 0.17)",
+  card2: "rgba(242, 138, 24, 0.07)",
+  border: "rgba(242, 138, 24, 0.74)",
+  outline: "rgba(242, 138, 24, 0.18)",
+  hover: "rgba(242, 138, 24, 0.2)",
+  outlineWeak: "rgba(242, 138, 24, 0.14)",
+  buttonShadow: "rgba(242, 138, 24, 0.24)",
+  buttonShadowStrong: "rgba(242, 138, 24, 0.2)",
 };
 
 const alternatePalette = {
@@ -11,6 +26,21 @@ const alternatePalette = {
   orangeSoft: "#8be8e0",
   orangeLine: "rgba(77, 208, 200, 0.54)",
   shadow: "rgba(7, 24, 30, 0.42)",
+  glow: "rgba(77, 208, 200, 0.72)",
+  strong: "rgba(77, 208, 200, 0.54)",
+  soft: "rgba(77, 208, 200, 0.38)",
+  weak: "rgba(77, 208, 200, 0.22)",
+  subtle: "rgba(77, 208, 200, 0.16)",
+  faint: "rgba(77, 208, 200, 0.12)",
+  tint: "rgba(77, 208, 200, 0.13)",
+  card: "rgba(77, 208, 200, 0.17)",
+  card2: "rgba(77, 208, 200, 0.07)",
+  border: "rgba(77, 208, 200, 0.74)",
+  outline: "rgba(77, 208, 200, 0.18)",
+  hover: "rgba(77, 208, 200, 0.2)",
+  outlineWeak: "rgba(77, 208, 200, 0.14)",
+  buttonShadow: "rgba(77, 208, 200, 0.24)",
+  buttonShadowStrong: "rgba(77, 208, 200, 0.2)",
 };
 
 const commandLabels = {
@@ -42,6 +72,21 @@ function applyPalette(palette) {
   document.documentElement.style.setProperty("--eldorado-orange-soft", palette.orangeSoft);
   document.documentElement.style.setProperty("--orange-line", palette.orangeLine);
   document.documentElement.style.setProperty("--shadow", palette.shadow);
+  document.documentElement.style.setProperty("--accent-glow", palette.glow);
+  document.documentElement.style.setProperty("--accent-strong", palette.strong);
+  document.documentElement.style.setProperty("--accent-soft", palette.soft);
+  document.documentElement.style.setProperty("--accent-weak", palette.weak);
+  document.documentElement.style.setProperty("--accent-subtle", palette.subtle);
+  document.documentElement.style.setProperty("--accent-faint", palette.faint);
+  document.documentElement.style.setProperty("--accent-tint", palette.tint);
+  document.documentElement.style.setProperty("--accent-card", palette.card);
+  document.documentElement.style.setProperty("--accent-card-2", palette.card2);
+  document.documentElement.style.setProperty("--accent-border", palette.border);
+  document.documentElement.style.setProperty("--accent-outline", palette.outline);
+  document.documentElement.style.setProperty("--accent-hover", palette.hover);
+  document.documentElement.style.setProperty("--accent-outline-weak", palette.outlineWeak);
+  document.documentElement.style.setProperty("--accent-button-shadow", palette.buttonShadow);
+  document.documentElement.style.setProperty("--accent-button-shadow-strong", palette.buttonShadowStrong);
 }
 
 function renderScreen() {
