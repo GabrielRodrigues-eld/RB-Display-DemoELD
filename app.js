@@ -1,4 +1,18 @@
 const screenNames = ["home", "controls", "result"];
+const defaultPalette = {
+  orange: "#f28a18",
+  orangeSoft: "#ffb05c",
+  orangeLine: "rgba(242, 138, 24, 0.54)",
+  shadow: "rgba(0, 0, 0, 0.42)",
+};
+
+const alternatePalette = {
+  orange: "#4dd0c8",
+  orangeSoft: "#8be8e0",
+  orangeLine: "rgba(77, 208, 200, 0.54)",
+  shadow: "rgba(7, 24, 30, 0.42)",
+};
+
 const commandLabels = {
   "swipe-left": "Swipe esquerda",
   "swipe-right": "Swipe direita",
@@ -22,6 +36,13 @@ let totalCommands = 0;
 let lastCommandLabel = "Nenhum";
 let pointerStart = null;
 let suppressClickUntil = 0;
+
+function applyPalette(palette) {
+  document.documentElement.style.setProperty("--eldorado-orange", palette.orange);
+  document.documentElement.style.setProperty("--eldorado-orange-soft", palette.orangeSoft);
+  document.documentElement.style.setProperty("--orange-line", palette.orangeLine);
+  document.documentElement.style.setProperty("--shadow", palette.shadow);
+}
 
 function renderScreen() {
   screens.forEach((screen, index) => {
@@ -61,6 +82,7 @@ function goPrevious() {
 function resetDemo() {
   totalCommands = 0;
   lastCommandLabel = "Nenhum";
+  applyPalette(defaultPalette);
   selectCommand("");
   updateStats();
   goToScreen(0);
@@ -89,6 +111,11 @@ function cancelCurrentScreen() {
 }
 
 function routeCommand(command) {
+  if (screenNames[currentScreen] === "result" && (command === "swipe-up" || command === "swipe-down")) {
+    applyPalette(command === "swipe-up" ? alternatePalette : defaultPalette);
+    return;
+  }
+
   if (command === "swipe-right") {
     goNext();
     return;
@@ -226,5 +253,6 @@ app.addEventListener("pointercancel", handlePointerCancel);
 window.addEventListener("keydown", handleKeydown);
 window.addEventListener("load", () => app.focus({ preventScroll: true }));
 
+applyPalette(defaultPalette);
 renderScreen();
 updateStats();
