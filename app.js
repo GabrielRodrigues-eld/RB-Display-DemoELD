@@ -105,6 +105,7 @@ const commandLabels = {
 const app = document.querySelector("#displayApp");
 const screens = Array.from(document.querySelectorAll(".screen"));
 const screenCounter = document.querySelector("#screenCounter");
+const hudDots = Array.from(document.querySelectorAll("#.hud-signal span"));
 const lastCommand = document.querySelector("#lastCommand");
 const commandCards = Array.from(document.querySelectorAll("[data-command]"));
 const paletteOptions = Array.from(document.querySelectorAll("[data-palette]"));
@@ -200,6 +201,9 @@ function renderScreen() {
   });
 
   screenCounter.textContent = String(currentScreen + 1).padStart(2, "0");
+  hudDots.forEach((dot, index) => {
+    dot.classList.toggle("is-active", index === currentScreen);
+  });
 }
 
 function focusScreenDefault() {
