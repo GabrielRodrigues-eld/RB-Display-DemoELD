@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=600, height=600, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Demo de gestos e paletas para o Meta Ray-Ban Display.">
+    <meta name="mrbd-web-app-capable" content="yes">
+    <title>Eldorado Display Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="display-shell" id="displayApp" tabindex="-1" aria-label="Eldorado Ray-Ban Display Demo">
+      <div class="hud-top" aria-hidden="true">
+        <span class="hud-signal">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="hud-screen" id="screenCounter">01</span>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+        <span class="toast-icon" id="toastIcon" aria-hidden="true">→</span>
+        <span id="toastMessage"></span>
+      </div>
+
+      <section class="screen screen-home is-active" data-screen="home" aria-hidden="false">
+        <div class="home-stack motion-item">
+          <div class="brand-mark" aria-label="Eldorado">
+            <img class="brand-logo" id="brandLogo" src="assets/eldorado-logo.png" alt="Eldorado">
+            <span class="logo-fallback">Eldorado</span>
+          </div>
+          <span class="brand-rule" aria-hidden="true"></span>
+          <div class="title-block">
+            <h1>Eldorado Display Demo</h1>
+            <p>Prova de Conceito</p>
+          </div>
+          <button class="primary-action focusable" type="button" data-action="start">Iniciar</button>
+        </div>
+      </section>
+
+      <section class="screen screen-controls" data-screen="controls" aria-hidden="true">
+        <header class="screen-heading motion-item">
+          <p>Teste rápido</p>
+          <h2>Controles</h2>
+          <span class="heading-hint">Use os gestos livremente. A saída exige 2 swipes.</span>
+        </header>
+
+        <div class="command-grid motion-item" aria-label="Comandos testáveis">
+          <div class="command-card" data-command="swipe-left">
+            <span class="command-icon" aria-hidden="true">←</span>
+            <span>Swipe esquerda</span>
+          </div>
+          <div class="command-card" data-command="swipe-right">
+            <span class="command-icon" aria-hidden="true">→</span>
+            <span>Swipe direita</span>
+          </div>
+          <div class="command-card" data-command="swipe-up">
+            <span class="command-icon" aria-hidden="true">↑</span>
+            <span>Swipe cima</span>
+          </div>
+          <div class="command-card" data-command="swipe-down">
+            <span class="command-icon" aria-hidden="true">↓</span>
+            <span>Swipe baixo</span>
+          </div>
+          <div class="command-card" data-command="enter">
+            <span class="command-icon pinch-icon" aria-hidden="true">●</span>
+            <span>Pinch / Enter</span>
+          </div>
+          <div class="command-card" data-command="cancel">
+            <span class="command-icon" aria-hidden="true">×</span>
+            <span>Pinch / Cancel</span>
+          </div>
+        </div>
+
+        <div class="control-footer motion-item">
+          <div class="exit-progress" aria-label="Progresso para sair da tela">
+            <span class="exit-route" id="exitBack"><b>←</b><span>voltar</span><i></i><i></i></span>
+            <span class="exit-route" id="exitNext"><span>avançar</span><i></i><i></i><b>→</b></span>
+          </div>
+          <p class="status-line" aria-live="polite">Último:&nbsp;<strong id="lastCommand">Nenhum</strong></p>
+        </div>
+      </section>
+
+      <section class="screen screen-result" data-screen="result" aria-hidden="true">
+        <header class="screen-heading palette-heading motion-item">
+          <div>
+            <p>Personalização</p>
+            <h2>Paletas do Display</h2>
+          </div>
+          <span class="palette-position" id="palettePosition">1 / 10</span>
+        </header>
+
+        <div class="palette-browser motion-item">
+          <span class="scroll-cue scroll-cue-top" aria-hidden="true">↑</span>
+          <div class="palette-list" id="paletteList" role="listbox" aria-label="Paletas de cores">
+            <button class="palette-option focusable is-selected" type="button" role="option" aria-selected="true" data-palette="eldorado">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#F28A18;--swatch-b:#FFD08A;--swatch-c:#5B2A08"></span>
+              <span class="palette-copy"><strong>Eldorado</strong><small>O bom e velho laranja</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="aurora">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#36D1DC;--swatch-b:#8B7BFF;--swatch-c:#103B5D"></span>
+              <span class="palette-copy"><strong>Aurora</strong><small>Ciano e violeta</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="garden">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#70E000;--swatch-b:#C9FF78;--swatch-c:#244B12"></span>
+              <span class="palette-copy"><strong>Jardim</strong><small>Tons de verde</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="rose">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#FF5C8A;--swatch-b:#8CE9FF;--swatch-c:#52233D"></span>
+              <span class="palette-copy"><strong>Rosa Gelado</strong><small>Rosa vibrante e azul</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="royal">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#A78BFA;--swatch-b:#FFD166;--swatch-c:#392B67"></span>
+              <span class="palette-copy"><strong>Royal Dusk</strong><small>Violeta e dourado</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="blue">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#2F80FF;--swatch-b:#A8D8FF;--swatch-c:#102A56"></span>
+              <span class="palette-copy"><strong>Azul</strong><small>Azul forte e azul claro</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="red">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#FF453A;--swatch-b:#FFB4AE;--swatch-c:#571713"></span>
+              <span class="palette-copy"><strong>Vermelho</strong><small>Vermelho forte e coral claro</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="yellow">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#FFD60A;--swatch-b:#FFF4A3;--swatch-c:#554600"></span>
+              <span class="palette-copy"><strong>Amarelo</strong><small>Amarelo puro e creme</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="contrast">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#00E5FF;--swatch-b:#FF375F;--swatch-c:#143A42"></span>
+              <span class="palette-copy"><strong>Ciano + Vermelho</strong><small>Duas cores em alto contraste</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+            <button class="palette-option focusable" type="button" role="option" aria-selected="false" data-palette="mono">
+              <span class="palette-swatch" aria-hidden="true" style="--swatch-a:#FFFFFF;--swatch-b:#B0B3B8;--swatch-c:#242529"></span>
+              <span class="palette-copy"><strong>Monocromático</strong><small>Branco, cinza e preto</small></span>
+              <span class="selection-mark" aria-hidden="true">✓</span>
+            </button>
+          </div>
+          <span class="scroll-cue scroll-cue-bottom" aria-hidden="true">↓</span>
+        </div>
+
+        <p class="palette-help motion-item"><span>↑ ↓</span> navegar <b>•</b> <span>pinch</span> aplicar</p>
+      </section>
+    </main>
+  </body>
+</html>
