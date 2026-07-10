@@ -1,4 +1,5 @@
 const screenNames = ["home", "controls", "result"];
+<<<<<<< HEAD
 
 const palettes = {
   eldorado: {
@@ -91,6 +92,58 @@ const palettes = {
     displayShade: "#171819",
     shadow: "rgba(0, 0, 0, 0.58)",
   },
+=======
+const defaultPalette = {
+  name: "orange",
+  orange: "#f28a18",
+  orangeSoft: "#ffb05c",
+  orangeLine: "rgba(242, 138, 24, 0.54)",
+  shadow: "rgba(0, 0, 0, 0.42)",
+  glow: "rgba(242, 138, 24, 0.72)",
+  strong: "rgba(242, 138, 24, 0.54)",
+  soft: "rgba(242, 138, 24, 0.38)",
+  weak: "rgba(242, 138, 24, 0.22)",
+  subtle: "rgba(242, 138, 24, 0.16)",
+  faint: "rgba(242, 138, 24, 0.12)",
+  tint: "rgba(242, 138, 24, 0.13)",
+  card: "rgba(242, 138, 24, 0.17)",
+  card2: "rgba(242, 138, 24, 0.07)",
+  border: "rgba(242, 138, 24, 0.74)",
+  outline: "rgba(242, 138, 24, 0.18)",
+  hover: "rgba(242, 138, 24, 0.2)",
+  outlineWeak: "rgba(242, 138, 24, 0.14)",
+  buttonShadow: "rgba(242, 138, 24, 0.24)",
+  buttonShadowStrong: "rgba(242, 138, 24, 0.2)",
+  bodyShade: "#12100c",
+  displayShade: "#15120e",
+  buttonInk: "#12100d",
+};
+
+const alternatePalette = {
+  name: "blue",
+  orange: "#2f80ff",
+  orangeSoft: "#86bdff",
+  orangeLine: "rgba(47, 128, 255, 0.54)",
+  shadow: "rgba(5, 17, 34, 0.46)",
+  glow: "rgba(47, 128, 255, 0.72)",
+  strong: "rgba(47, 128, 255, 0.54)",
+  soft: "rgba(47, 128, 255, 0.38)",
+  weak: "rgba(47, 128, 255, 0.22)",
+  subtle: "rgba(47, 128, 255, 0.16)",
+  faint: "rgba(47, 128, 255, 0.12)",
+  tint: "rgba(47, 128, 255, 0.13)",
+  card: "rgba(47, 128, 255, 0.17)",
+  card2: "rgba(47, 128, 255, 0.07)",
+  border: "rgba(47, 128, 255, 0.74)",
+  outline: "rgba(47, 128, 255, 0.18)",
+  hover: "rgba(47, 128, 255, 0.2)",
+  outlineWeak: "rgba(47, 128, 255, 0.14)",
+  buttonShadow: "rgba(47, 128, 255, 0.24)",
+  buttonShadowStrong: "rgba(47, 128, 255, 0.2)",
+  bodyShade: "#07121f",
+  displayShade: "#08182b",
+  buttonInk: "#06101d",
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 };
 
 const commandLabels = {
@@ -98,14 +151,20 @@ const commandLabels = {
   "swipe-right": "Swipe direita",
   "swipe-up": "Swipe cima",
   "swipe-down": "Swipe baixo",
+<<<<<<< HEAD
   enter: "Pinch / Enter",
   cancel: "Pinch / Cancel",
+=======
+  enter: "Enter",
+  cancel: "Cancel",
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 };
 
 const app = document.querySelector("#displayApp");
 const screens = Array.from(document.querySelectorAll(".screen"));
 const screenCounter = document.querySelector("#screenCounter");
 const lastCommand = document.querySelector("#lastCommand");
+<<<<<<< HEAD
 const commandCards = Array.from(document.querySelectorAll("[data-command]"));
 const paletteOptions = Array.from(document.querySelectorAll("[data-palette]"));
 const palettePosition = document.querySelector("#palettePosition");
@@ -115,10 +174,17 @@ const toastIcon = document.querySelector("#toastIcon");
 const toastMessage = document.querySelector("#toastMessage");
 const exitBack = document.querySelector("#exitBack");
 const exitNext = document.querySelector("#exitNext");
+=======
+const resultLastCommand = document.querySelector("#resultLastCommand");
+const commandCount = document.querySelector("#commandCount");
+const commandCards = Array.from(document.querySelectorAll("[data-command]"));
+const brandLogo = document.querySelector("#brandLogo");
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 
 let currentScreen = 0;
 let totalCommands = 0;
 let lastCommandLabel = "Nenhum";
+<<<<<<< HEAD
 let selectedPaletteKey = "eldorado";
 let exitSwipes = { left: 0, right: 0 };
 let pointerStart = null;
@@ -190,6 +256,35 @@ function showToast(message, direction = "info", customDuration = null, onDismiss
     toastTimer = null;
     if (onDismiss) onDismiss();
   }, duration);
+=======
+let pointerStart = null;
+let suppressClickUntil = 0;
+
+function applyPalette(palette) {
+  document.documentElement.dataset.palette = palette.name;
+  document.documentElement.style.setProperty("--eldorado-orange", palette.orange);
+  document.documentElement.style.setProperty("--eldorado-orange-soft", palette.orangeSoft);
+  document.documentElement.style.setProperty("--orange-line", palette.orangeLine);
+  document.documentElement.style.setProperty("--shadow", palette.shadow);
+  document.documentElement.style.setProperty("--accent-glow", palette.glow);
+  document.documentElement.style.setProperty("--accent-strong", palette.strong);
+  document.documentElement.style.setProperty("--accent-soft", palette.soft);
+  document.documentElement.style.setProperty("--accent-weak", palette.weak);
+  document.documentElement.style.setProperty("--accent-subtle", palette.subtle);
+  document.documentElement.style.setProperty("--accent-faint", palette.faint);
+  document.documentElement.style.setProperty("--accent-tint", palette.tint);
+  document.documentElement.style.setProperty("--accent-card", palette.card);
+  document.documentElement.style.setProperty("--accent-card-2", palette.card2);
+  document.documentElement.style.setProperty("--accent-border", palette.border);
+  document.documentElement.style.setProperty("--accent-outline", palette.outline);
+  document.documentElement.style.setProperty("--accent-hover", palette.hover);
+  document.documentElement.style.setProperty("--accent-outline-weak", palette.outlineWeak);
+  document.documentElement.style.setProperty("--accent-button-shadow", palette.buttonShadow);
+  document.documentElement.style.setProperty("--accent-button-shadow-strong", palette.buttonShadowStrong);
+  document.documentElement.style.setProperty("--body-accent-shade", palette.bodyShade);
+  document.documentElement.style.setProperty("--display-accent-shade", palette.displayShade);
+  document.documentElement.style.setProperty("--accent-button-ink", palette.buttonInk);
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 }
 
 function renderScreen() {
@@ -202,6 +297,7 @@ function renderScreen() {
   screenCounter.textContent = String(currentScreen + 1).padStart(2, "0");
 }
 
+<<<<<<< HEAD
 function focusScreenDefault() {
   window.setTimeout(() => {
     const screenName = screenNames[currentScreen];
@@ -249,6 +345,23 @@ function goToScreen(index) {
   }
   renderScreen();
   focusScreenDefault();
+=======
+function updateStats() {
+  lastCommand.textContent = lastCommandLabel;
+  resultLastCommand.textContent = lastCommandLabel;
+  commandCount.textContent = String(totalCommands);
+}
+
+function selectCommand(command) {
+  commandCards.forEach((card) => {
+    card.classList.toggle("is-selected", card.dataset.command === command);
+  });
+}
+
+function goToScreen(index) {
+  currentScreen = Math.max(0, Math.min(screenNames.length - 1, index));
+  renderScreen();
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 }
 
 function goNext() {
@@ -259,6 +372,7 @@ function goPrevious() {
   goToScreen(currentScreen - 1);
 }
 
+<<<<<<< HEAD
 function updateStats() {
   lastCommand.textContent = lastCommandLabel;
 }
@@ -333,6 +447,62 @@ function routeCommand(command) {
     else if (command === "swipe-down") movePaletteFocus(1);
     else if (command === "swipe-left" || command === "cancel") goPrevious();
     else if (command === "swipe-right") showToast("Você já está na última tela", "right");
+=======
+function resetDemo() {
+  totalCommands = 0;
+  lastCommandLabel = "Nenhum";
+  applyPalette(defaultPalette);
+  selectCommand("");
+  updateStats();
+  goToScreen(0);
+}
+
+function confirmCurrentScreen() {
+  if (screenNames[currentScreen] === "home") {
+    goNext();
+    return;
+  }
+
+  if (screenNames[currentScreen] === "controls") {
+    goNext();
+    return;
+  }
+
+  resetDemo();
+}
+
+function cancelCurrentScreen() {
+  if (currentScreen > 0) {
+    goPrevious();
+  } else {
+    goToScreen(0);
+  }
+}
+
+function routeCommand(command) {
+  if (screenNames[currentScreen] === "result" && (command === "swipe-up" || command === "swipe-down")) {
+    applyPalette(command === "swipe-up" ? alternatePalette : defaultPalette);
+    return;
+  }
+
+  if (command === "swipe-right") {
+    goNext();
+    return;
+  }
+
+  if (command === "swipe-left") {
+    goPrevious();
+    return;
+  }
+
+  if (command === "enter") {
+    confirmCurrentScreen();
+    return;
+  }
+
+  if (command === "cancel") {
+    cancelCurrentScreen();
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
   }
 }
 
@@ -344,6 +514,7 @@ function handleCommand(command) {
   routeCommand(command);
 }
 
+<<<<<<< HEAD
 function updatePalettePosition(option) {
   const index = Math.max(0, paletteOptions.indexOf(option));
   palettePosition.textContent = `${index + 1} / ${paletteOptions.length}`;
@@ -379,19 +550,35 @@ function selectPalette(key, announce = true) {
   if (announce) showToast(`${palette.label} aplicada`, "success");
 }
 
+=======
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 function detectSwipe(deltaX, deltaY) {
   const absX = Math.abs(deltaX);
   const absY = Math.abs(deltaY);
   const threshold = 44;
 
+<<<<<<< HEAD
   if (Math.max(absX, absY) < threshold) return null;
   if (absX > absY) return deltaX > 0 ? "swipe-right" : "swipe-left";
+=======
+  if (Math.max(absX, absY) < threshold) {
+    return null;
+  }
+
+  if (absX > absY) {
+    return deltaX > 0 ? "swipe-right" : "swipe-left";
+  }
+
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
   return deltaY > 0 ? "swipe-down" : "swipe-up";
 }
 
 function handleKeydown(event) {
+<<<<<<< HEAD
   if (event.repeat) return;
 
+=======
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
   const keyMap = {
     ArrowRight: "swipe-right",
     ArrowLeft: "swipe-left",
@@ -400,16 +587,24 @@ function handleKeydown(event) {
     Enter: "enter",
     Escape: "cancel",
   };
+<<<<<<< HEAD
   const command = keyMap[event.key];
   if (!command) {
     if (screenNames[currentScreen] === "controls") {
       resetExitProgress();
       hideToast();
     }
+=======
+
+  const command = keyMap[event.key];
+
+  if (!command) {
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
     return;
   }
 
   event.preventDefault();
+<<<<<<< HEAD
 
   if (screenNames[currentScreen] === "result" && command === "enter") {
     const focusedPalette = document.activeElement.closest && document.activeElement.closest("[data-palette]");
@@ -417,10 +612,13 @@ function handleKeydown(event) {
     return;
   }
 
+=======
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
   handleCommand(command);
 }
 
 function handlePointerDown(event) {
+<<<<<<< HEAD
   pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
   if (app.setPointerCapture) app.setPointerCapture(event.pointerId);
 }
@@ -431,6 +629,34 @@ function handlePointerUp(event) {
   const command = detectSwipe(event.clientX - pointerStart.x, event.clientY - pointerStart.y);
   pointerStart = null;
   if (!command) return;
+=======
+  pointerStart = {
+    x: event.clientX,
+    y: event.clientY,
+    id: event.pointerId,
+  };
+
+  if (app.setPointerCapture) {
+    app.setPointerCapture(event.pointerId);
+  }
+}
+
+function handlePointerUp(event) {
+  if (!pointerStart) {
+    return;
+  }
+
+  const command = detectSwipe(
+    event.clientX - pointerStart.x,
+    event.clientY - pointerStart.y,
+  );
+
+  pointerStart = null;
+
+  if (!command) {
+    return;
+  }
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
 
   event.preventDefault();
   suppressClickUntil = Date.now() + 320;
@@ -442,6 +668,7 @@ function handlePointerCancel() {
 }
 
 document.querySelector('[data-action="start"]').addEventListener("click", () => {
+<<<<<<< HEAD
   if (Date.now() < suppressClickUntil) return;
   handleCommand("enter");
 });
@@ -451,6 +678,30 @@ paletteOptions.forEach((option) => {
   option.addEventListener("click", () => {
     if (Date.now() < suppressClickUntil) return;
     selectPalette(option.dataset.palette);
+=======
+  if (Date.now() < suppressClickUntil) {
+    return;
+  }
+
+  handleCommand("enter");
+});
+
+document.querySelector('[data-action="restart"]').addEventListener("click", () => {
+  if (Date.now() < suppressClickUntil) {
+    return;
+  }
+
+  resetDemo();
+});
+
+commandCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    if (Date.now() < suppressClickUntil) {
+      return;
+    }
+
+    handleCommand(card.dataset.command);
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
   });
 });
 
@@ -461,6 +712,7 @@ brandLogo.addEventListener("error", () => {
 app.addEventListener("pointerdown", handlePointerDown);
 app.addEventListener("pointerup", handlePointerUp);
 app.addEventListener("pointercancel", handlePointerCancel);
+<<<<<<< HEAD
 document.addEventListener("keydown", handleKeydown);
 window.addEventListener("load", focusScreenDefault);
 
@@ -468,3 +720,11 @@ applyPalette(palettes.eldorado);
 renderScreen();
 updateStats();
 updateExitProgress();
+=======
+window.addEventListener("keydown", handleKeydown);
+window.addEventListener("load", () => app.focus({ preventScroll: true }));
+
+applyPalette(defaultPalette);
+renderScreen();
+updateStats();
+>>>>>>> 45a90a0bd751f4110fca10d542d274447238f0ca
