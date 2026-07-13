@@ -348,13 +348,31 @@ function handleCommand(command) {
   routeCommand(command);
 }
 
-function updatePalettePosition(option) {
-  const index = Math.max(0, paletteOptions.indexOf(option));
-  palettePosition.textContent = `${index + 1} / ${paletteOptions.length}`;
+function updatePalettePosition(optionOrKey) {
+  // Accept either an element or a palette key string.
+  let key = null;
+  if (!optionOrKey) key = selectedPaletteKey;
+  else if (typeof optionOrKey === "string") key = optionOrKey;
+  else key = optionOrKey.dataset && optionOrKey.dataset.palette;
+
+  // Find index by data-palette to avoid reference mismatches.
+  const idxRaw = paletteOptions.findIndex((o) => o.dataset && o.dataset.palette === key);
+  if (idxRaw >= 0) {
+    palettePosition.textContent = `${idxRaw + 1} / ${paletteOptions.length}`;
+    return;
+  }
+
+  // Defensive fallback: use selectedPaletteKey if provided, otherwise show 1.
+  const fallback = Math.max(0, paletteOptions.findIndex((o) => o.dataset && o.dataset.palette === selectedPaletteKey));
+  palettePosition.textContent = `${fallback + 1} / ${paletteOptions.length}`;
 }
 
 function movePaletteFocus(step) {
-  const activeIndex = paletteOptions.indexOf(document.activeElement);
+  // Determine active element's palette key (if focus on a child, find closest palette element).
+  const activeEl = document.activeElement && document.activeElement.closest ? document.activeElement.closest("[data-palette]") : document.activeElement;
+  const activeKey = activeEl && activeEl.dataset ? activeEl.dataset.palette : null;
+  const activeIndex = activeKey ? paletteOptions.findIndex((option) => option.dataset.palette === activeKey) : -1;
+
   const selectedIndex = paletteOptions.findIndex((option) => option.dataset.palette === selectedPaletteKey);
   const baseIndex = activeIndex >= 0 ? activeIndex : Math.max(0, selectedIndex);
   const nextIndex = (baseIndex + step + paletteOptions.length) % paletteOptions.length;
@@ -379,7 +397,16 @@ function selectPalette(key, announce = true) {
   });
 
   const selected = document.querySelector(`[data-palette="${key}"]`);
-  if (selected) updatePalettePosition(selected);
+  if (selected) {
+    // Ensure focus and viewport alignment so position reflects the selected item.
+    try {
+      selected.focus({ preventScroll: true });
+    } catch (e) {
+      // ignore
+    }
+    selected.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    updatePalettePosition(selected);
+  }
   if (announce) showToast(`${palette.label} aplicada`, "success");
 }
 
@@ -451,10 +478,12 @@ document.querySelector('[data-action="start"]').addEventListener("click", () => 
 });
 
 paletteOptions.forEach((option) => {
-  option.addEventListener("focus", () => updatePalettePosition(option));
-  option.addEventListener("click", () => {
+  option.addEventListener("focus", (e) => updatePalettePosition(e.currentTarget));
+  option.addEventListener("click", (e) => {
     if (Date.now() < suppressClickUntil) return;
-    selectPalette(option.dataset.palette);
+    // Use currentTarget to ensure we reference the button itself (not a child node).
+    const target = e.currentTarget || e.target;
+    selectPalette(target.dataset.palette);
   });
 });
 
